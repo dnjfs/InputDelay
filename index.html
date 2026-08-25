@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InputDelay</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section id="lobby-screen" class="screen" aria-labelledby="game-title">
+        <div class="title-block">
+          <p class="eyebrow">A DELAYED INPUT PLATFORMER</p>
+          <h1 id="game-title">INPUT<span>DELAY</span></h1>
+          <p class="subtitle">미래의 당신은 어떤 상태일까요?</p>
+        </div>
+
+        <div class="stage-select" aria-label="스테이지 선택">
+          <button class="stage-card stage-card--available" data-stage="1" type="button">
+            <span class="stage-number">01</span>
+            <span class="stage-name">THE FIRST GAP</span>
+            <span class="stage-delay">DELAY 0.3s</span>
+          </button>
+          <button class="stage-card stage-card--available" data-stage="2" type="button">
+            <span class="stage-number">02</span>
+            <span class="stage-name">MOVING GROUND</span>
+            <span class="stage-delay">DELAY 0.3s</span>
+          </button>
+          <button class="stage-card stage-card--available" data-stage="3" type="button">
+            <span class="stage-number">03</span>
+            <span class="stage-name">CRUMBLING PATH</span>
+            <span class="stage-delay">DELAY 0.4s</span>
+          </button>
+          <button class="stage-card stage-card--available" data-stage="4" type="button">
+            <span class="stage-number">04</span>
+            <span class="stage-name">PHASE SHIFT</span>
+            <span class="stage-delay">DELAY 0.4s</span>
+          </button>
+          <button class="stage-card stage-card--available" data-stage="5" type="button">
+            <span class="stage-number">05</span>
+            <span class="stage-name">FINAL ASCENT</span>
+            <span class="stage-delay">DELAY 0.5s</span>
+          </button>
+        </div>
+
+        <div class="controls-guide">
+          <span><kbd>←</kbd><kbd>→</kbd> 이동</span>
+          <span><kbd>SPACE</kbd> 점프</span>
+        </div>
+      </section>
+
+      <section id="game-screen" class="screen hidden" aria-label="게임 화면">
+        <header class="game-header">
+          <div>
+            <p class="eyebrow">STAGE <span id="stage-number">01</span></p>
+            <h2 id="stage-title">THE FIRST GAP</h2>
+          </div>
+          <div class="delay-readout" aria-label="현재 입력 지연">
+            <span>INPUT DELAY</span>
+            <strong id="delay-value">0.3s</strong>
+          </div>
+          <button id="lobby-button" class="text-button" type="button">로비로</button>
+        </header>
+
+        <div class="canvas-frame">
+          <canvas id="game-canvas" width="1120" height="630">
+            이 게임은 Canvas를 지원하는 브라우저가 필요합니다.
+          </canvas>
+
+          <div id="result-panel" class="result-panel hidden" role="dialog" aria-modal="true" aria-labelledby="result-title">
+            <p class="eyebrow">STAGE CLEAR</p>
+            <h2 id="result-title">미래 예측을 성공하였습니다.</h2>
+            <div class="result-actions">
+              <button id="retry-button" class="primary-button" type="button">다시 하기</button>
+              <button id="result-lobby-button" class="secondary-button" type="button">로비로</button>
+            </div>
+          </div>
+        </div>
+
+        <footer class="game-footer">
+          <div class="input-status">
+            <span>적용된 입력</span>
+            <div class="key-state" aria-label="현재 적용된 방향 입력">
+              <kbd id="left-state">←</kbd>
+              <kbd id="right-state">→</kbd>
+            </div>
+          </div>
+          <div class="queue-status">
+            <span>대기 중인 입력</span>
+            <strong id="queue-count">0</strong>
+            <span id="next-input-time" class="queue-time">—</span>
+          </div>
+          <p id="game-message" class="game-message">깃발에 닿으면 클리어!</p>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>
